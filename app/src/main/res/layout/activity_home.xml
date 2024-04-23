@@ -15,7 +15,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
         android:drawableTop="@drawable/as_exit"
+        android:fontFamily="@font/inter_bold"
         android:text="Exit"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -26,7 +28,9 @@
         android:layout_height="140dp"
         android:layout_marginStart="8dp"
         android:drawableTop="@drawable/as_earnings"
+        android:fontFamily="@font/inter_bold"
         android:text="Earnings"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/ah_pos"
         app:layout_constraintStart_toEndOf="@+id/ah_pos"
         app:layout_constraintTop_toTopOf="@+id/ah_pos"
@@ -39,7 +43,9 @@
         android:layout_height="140dp"
         android:layout_marginTop="8dp"
         android:drawableTop="@drawable/as_pos"
+        android:fontFamily="@font/inter_bold"
         android:text="POS"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/ah_add_product"
         app:layout_constraintTop_toBottomOf="@+id/ah_add_product" />
 
@@ -73,8 +79,10 @@
         android:layout_height="140dp"
         android:layout_marginTop="32dp"
         android:drawableTop="@drawable/as_view_inventory"
+        android:fontFamily="@font/inter_bold"
         android:padding="10dp"
         android:text="View Inventory"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -86,7 +94,9 @@
         android:layout_marginStart="8dp"
         android:layout_weight="1"
         android:drawableTop="@drawable/as_add_category"
+        android:fontFamily="@font/inter_bold"
         android:text="Add Category"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/ah_add_product"
         app:layout_constraintStart_toEndOf="@+id/ah_add_product"
         app:layout_constraintTop_toTopOf="@+id/ah_add_product" />
@@ -98,7 +108,9 @@
         android:layout_height="140dp"
         android:layout_marginTop="8dp"
         android:drawableTop="@drawable/as_add_product"
+        android:fontFamily="@font/inter_bold"
         android:text="Add Product"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/ah_view_inventory"
         app:layout_constraintTop_toBottomOf="@+id/ah_view_inventory" />
 
