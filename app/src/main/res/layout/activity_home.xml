@@ -8,10 +8,98 @@
     tools:context=".Home">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/ah_exit"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:drawableTop="@drawable/as_exit"
+        android:text="Exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/ah_earnings"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="8dp"
+        android:drawableTop="@drawable/as_earnings"
+        android:text="Earnings"
+        app:layout_constraintBottom_toBottomOf="@+id/ah_pos"
+        app:layout_constraintStart_toEndOf="@+id/ah_pos"
+        app:layout_constraintTop_toTopOf="@+id/ah_pos"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/ah_pos"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="8dp"
+        android:drawableTop="@drawable/as_pos"
+        android:text="POS"
+        app:layout_constraintStart_toStartOf="@+id/ah_add_product"
+        app:layout_constraintTop_toBottomOf="@+id/ah_add_product" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:srcCompat="@drawable/baseline_menu_open_24" />
+
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="104dp" />
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/inter_black"
+        android:text="Control Board"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ah_view_inventory"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="32dp"
+        android:drawableTop="@drawable/as_view_inventory"
+        android:padding="10dp"
+        android:text="View Inventory"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/ah_add_category"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:drawableTop="@drawable/as_add_category"
+        android:text="Add Category"
+        app:layout_constraintBottom_toBottomOf="@+id/ah_add_product"
+        app:layout_constraintStart_toEndOf="@+id/ah_add_product"
+        app:layout_constraintTop_toTopOf="@+id/ah_add_product" />
+
+    <Button
+        android:id="@+id/ah_add_product"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="8dp"
+        android:drawableTop="@drawable/as_add_product"
+        android:text="Add Product"
+        app:layout_constraintStart_toStartOf="@+id/ah_view_inventory"
+        app:layout_constraintTop_toBottomOf="@+id/ah_view_inventory" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
