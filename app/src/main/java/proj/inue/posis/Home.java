@@ -1,7 +1,7 @@
 package proj.inue.posis;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -33,31 +33,34 @@ public class Home extends AppCompatActivity {
             return insets;
         });
 
-
         ArrayList<Button> menuButtons = new ArrayList<>(6);
 
-        menuButtons.add(findViewById(R.id.ah_view_inventory));
-        menuButtons.add(findViewById(R.id.ah_add_product));
-        menuButtons.add(findViewById(R.id.ah_add_category));
-        menuButtons.add(findViewById(R.id.ah_pos));
-        menuButtons.add(findViewById(R.id.ah_earnings));
-        menuButtons.add(findViewById(R.id.ah_exit));
-
+        menuButtons.add(findViewById(R.id.ah_view_inventory_button));
+        menuButtons.add(findViewById(R.id.ah_add_product_button));
+        menuButtons.add(findViewById(R.id.ah_add_category_button));
+        menuButtons.add(findViewById(R.id.ah_pos_button));
+        menuButtons.add(findViewById(R.id.ah_earnings_button));
+        menuButtons.add(findViewById(R.id.ah_exit_button));
 
         menuButtons.get(B_VIEW_INVENTORY).setOnClickListener(e -> {
-            finish();
+            Intent intent = new Intent(Home.this, PViewInventoryActivity.class);
+            startActivity(intent);
         });
         menuButtons.get(B_ADD_PRODUCT).setOnClickListener(e -> {
-            finish();
+            Intent intent = new Intent(Home.this, PAddProductActivity.class);
+            startActivity(intent);
         });
         menuButtons.get(B_ADD_CATEGORY).setOnClickListener(e -> {
-            finish();
+            Intent intent = new Intent(Home.this, PAddCategoryActivity.class);
+            startActivity(intent);
         });
         menuButtons.get(B_POS).setOnClickListener(e -> {
-            finish();
+            Intent intent = new Intent(Home.this, PPointOfSaleActivity.class);
+            startActivity(intent);
         });
         menuButtons.get(B_EARNINGS).setOnClickListener(e -> {
-            finish();
+            Intent intent = new Intent(Home.this, PEarningsActivity.class);
+            startActivity(intent);
         });
         menuButtons.get(B_EXIT).setOnClickListener(e -> {
             finish();
