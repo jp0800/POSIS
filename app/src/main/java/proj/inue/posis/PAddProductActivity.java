@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,17 +32,17 @@ public class PAddProductActivity extends AppCompatActivity {
             return insets;
         });
 
+        /* Initialization */
+        ImageView back = findViewById(R.id.pap_back);
         TextView activityTitle = findViewById(R.id.pap_activity_title);
         Spinner spin = findViewById(R.id.pap_category);
 
-
+        /* Data Bindings */
+        back.setOnClickListener(e -> finish());
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),
-                                courses[position],
-                                Toast.LENGTH_LONG)
-                        .show();
+                Toast.makeText(getApplicationContext(), courses[position], Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -49,24 +50,18 @@ public class PAddProductActivity extends AppCompatActivity {
 
             }
         });
-        ArrayAdapter<String> ad
-                = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_spinner_item,
-                courses);
+        ArrayAdapter<String> ad = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, courses);
 
         // set simple layout resource file
         // for each item of spinner
-        ad.setDropDownViewResource(
-                android.R.layout
-                        .simple_spinner_dropdown_item);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Set the ArrayAdapter (ad) data on the
         // Spinner which binds data to spinner
         spin.setAdapter(ad);
 
-        Bundle bundle = getIntent().getExtras();
 
+        Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             activityTitle.setText(bundle.getString("activityTitle", "Add Product"));
             System.out.println(">>>>>>>>>>>>>>>>>>");

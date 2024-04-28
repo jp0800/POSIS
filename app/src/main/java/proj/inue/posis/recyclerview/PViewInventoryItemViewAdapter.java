@@ -63,8 +63,6 @@ public class PViewInventoryItemViewAdapter extends RecyclerView.Adapter<PViewInv
         holder.imageViews.get(2).setOnClickListener(e -> {
             int adapterPosition = holder.getAdapterPosition();
             PViewInventoryItems.remove(adapterPosition);
-            MockDatabase.inventoryList = PViewInventoryItems;
-
             notifyItemRemoved(adapterPosition);
         });
     }

@@ -5,10 +5,12 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import proj.inue.posis.R;
+import proj.inue.posis.recyclerview.PAddCategoryItem;
 import proj.inue.posis.recyclerview.PViewInventoryItem;
 
 public class MockDatabase {
     public static ArrayList<PViewInventoryItem> inventoryList = new ArrayList<>();
+    public static ArrayList<PAddCategoryItem> categoryList = new ArrayList<>();
 
     public static void initInventoryItems(){
         /* Setup Mock Variables */
@@ -30,5 +32,23 @@ public class MockDatabase {
         inventoryList.add(new Gson().fromJson(jsonMock, PViewInventoryItem.class));
         inventoryList.add(new Gson().fromJson(jsonMock, PViewInventoryItem.class));
         inventoryList.add(new Gson().fromJson(jsonMock, PViewInventoryItem.class));
+    }
+
+    public static void initAddCategoryItems(){
+        /* Setup Mock Variables */
+        String jsonMock = Helper.stringsToJson(
+                new String[]{
+                        "categoryName", "edit", "delete"
+                }, new String[]{
+                        "Something",
+                        String.valueOf(R.drawable.baseline_edit_square_24),
+                        String.valueOf(R.drawable.baseline_delete_24)
+                }
+        );
+
+        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
+        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
+        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
+        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
     }
 }
