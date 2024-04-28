@@ -5,11 +5,20 @@ public class Helper {
         StringBuilder out = new StringBuilder("{");
 
         for (int i = 0; i < keys.length; i++) {
-            out.append(String.format("'%s':'%s'", keys[i], values[i]));
+            if (values[i].charAt(0) == '[') out.append(String.format("'%s':%s", keys[i], values[i]));
+            else out.append(String.format("'%s':'%s'", keys[i], values[i]));
             if (i < keys.length - 1) out.append(",");
         }
         out.append("}");
 
+        return out.toString();
+    }
+
+    public static String getArrayToString(String[] array, char separator, char prefix, char  suffix) {
+        StringBuilder out = new StringBuilder();
+        for (String item : array) {
+            out.append(String.format("%c%s%c%c",prefix, item, separator, suffix));
+        }
         return out.toString();
     }
 }

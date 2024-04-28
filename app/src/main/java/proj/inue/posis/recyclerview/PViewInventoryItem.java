@@ -1,10 +1,15 @@
 package proj.inue.posis.recyclerview;
 
-public class Item {
-    String title, category, label, content;
+import com.google.gson.Gson;
+
+import proj.inue.posis.utils.Helper;
+
+public class PViewInventoryItem {
+    String title, category;
+    String[] label, content;
     int image, edit, delete;
 
-    public Item(String title, String category, String label, String content, int image, int edit, int delete) {
+    public PViewInventoryItem(String title, String category, String[] label, String[] content, int image, int edit, int delete) {
         this.title = title;
         this.category = category;
         this.label = label;
@@ -30,19 +35,19 @@ public class Item {
         this.category = category;
     }
 
-    public String getLabel() {
+    public String[] getLabel() {
         return label;
     }
 
-    public void setLabel(String label) {
+    public void setLabel(String[] label) {
         this.label = label;
     }
 
-    public String getContent() {
+    public String[] getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(String[] content) {
         this.content = content;
     }
 
@@ -68,5 +73,18 @@ public class Item {
 
     public void setDelete(int delete) {
         this.delete = delete;
+    }
+
+    public String getLabelString() {
+        return Helper.getArrayToString(label, ':', Character.MIN_VALUE, '\n');
+    }
+
+    public String getContentString() {
+        return Helper.getArrayToString(content, Character.MIN_VALUE, Character.MIN_VALUE, '\n');
+    }
+
+    public String toJson(){
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

@@ -1,9 +1,12 @@
 package proj.inue.posis;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -15,9 +18,10 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-import proj.inue.posis.recyclerview.Item;
-import proj.inue.posis.recyclerview.ItemViewAdapter;
+import proj.inue.posis.recyclerview.PViewInventoryItem;
+import proj.inue.posis.recyclerview.PViewInventoryItemViewAdapter;
 import proj.inue.posis.utils.Helper;
+import proj.inue.posis.utils.MockDatabase;
 
 public class PViewInventoryActivity extends AppCompatActivity {
 
@@ -32,36 +36,18 @@ public class PViewInventoryActivity extends AppCompatActivity {
             return insets;
         });
 
-        /* Setup Mock Variables */
-        String jsonMock = Helper.stringsToJson(
-                new String[]{
-                        "title", "category", "label", "content", "image", "edit", "delete"
-                }, new String[]{
-                        "Something",
-                        "lol",
-                        "Price:\nQuantity:\nCapital:\nTotal Price:\nBarcode:\nItem Left:\nItem Purchased:",
-                        "P 235.00\n5000 pcs\nP 1,175.00\nP 2,350.00\n 0 705632 441947\n2500\n2500",
-                        String.valueOf(R.drawable.as_logo),
-                        String.valueOf(R.drawable.baseline_edit_square_24),
-                        String.valueOf(R.drawable.baseline_delete_24)
-                }
-        );
-
-        ArrayList<Item> items = new ArrayList<>();
-        items.add(new Gson().fromJson(jsonMock, Item.class));
-        items.add(new Gson().fromJson(jsonMock, Item.class));
-        items.add(new Gson().fromJson(jsonMock, Item.class));
-        items.add(new Gson().fromJson(jsonMock, Item.class));
+        /* Temporary Database */
+        if(MockDatabase.inventoryList.isEmpty()) MockDatabase.initInventoryItems();
 
         /* Initialization */
         TextView totalItems = findViewById(R.id.pvi_number_of_items_textview);
         RecyclerView rv = findViewById(R.id.pvi_recycler_view);
 
         /* Data Bindings */
-        totalItems.setText(String.format("%s %s", getResources().getString(R.string.pvi_number_of_items_textview), items.size()));
-
+        totalItems.setText(String.format("%s %s", getResources().getString(R.string.pvi_number_of_items_textview), MockDatabase.inventoryList.size()));
 
         rv.setLayoutManager(new LinearLayoutManager((this)));
-        rv.setAdapter(new ItemViewAdapter(getApplicationContext(), items)); // Add the database object
+        rv.setAdapter(new PViewInventoryItemViewAdapter(getApplicationContext(), MockDatabase.inventoryList)); // Add the database object
+
     }
 }
