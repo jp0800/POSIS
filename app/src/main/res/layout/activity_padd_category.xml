@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PAddCategoryActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/as_bg_splash" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="70dp"
+        android:fontFamily="@font/inter_black"
+        android:text="Add Category"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:srcCompat="@drawable/as_add_category" />
+
+    <ImageView
+        android:id="@+id/pac_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back_ios_new_24" />
+
+    <EditText
+        android:id="@+id/pac_new_category_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/w_edittext_bgwhite_rounded"
+        android:ems="10"
+        android:fontFamily="@font/inter_medium"
+        android:hint="New Category"
+        android:inputType="text"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pac_back" />
+
+    <ImageView
+        android:id="@+id/pac_add_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pac_new_category_edittext"
+        app:layout_constraintStart_toEndOf="@+id/pac_new_category_edittext"
+        app:layout_constraintTop_toTopOf="@+id/pac_new_category_edittext"
+        app:srcCompat="@drawable/baseline_add_box_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pac_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pac_new_category_edittext" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

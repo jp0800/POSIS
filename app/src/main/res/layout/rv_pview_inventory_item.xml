@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/w_edittext_bgwhite_rounded">
+
+    <ImageView
+        android:id="@+id/rvvii_image"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/as_logo" />
+
+    <TextView
+        android:id="@+id/rvvii_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_medium"
+        android:textSize="8sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/rvvii_title"
+        app:layout_constraintEnd_toEndOf="@+id/rvvii_title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rvvii_title"
+        tools:text="Bond Papers" />
+
+    <TextView
+        android:id="@+id/rvvii_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/inter_bold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toStartOf="@+id/rvvii_image"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="A4 Bond Paper" />
+
+    <TextView
+        android:id="@+id/rvvii_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inter_light"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/rvvii_title"
+        app:layout_constraintTop_toBottomOf="@+id/rvvii_title"
+        tools:text="Price:\nQuantity:\nCapital:\nTotal Price:\nBarcode:\nItem Left:\nItem Purchased:" />
+
+    <TextView
+        android:id="@+id/rvvii_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="P 235.00\n5000 pcs\nP 1,175.00\nP 2,350.00\n 0 705632 441947\n2500\n2500"
+        android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rvvii_label"
+        app:layout_constraintEnd_toStartOf="@+id/rvvii_image"
+        app:layout_constraintStart_toEndOf="@+id/rvvii_label"
+        app:layout_constraintTop_toTopOf="@+id/rvvii_label" />
+
+    <ImageView
+        android:id="@+id/rvvii_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvvii_label"
+        app:srcCompat="@drawable/baseline_edit_square_24" />
+
+    <ImageView
+        android:id="@+id/rvvii_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rvvii_edit"
+        app:layout_constraintEnd_toStartOf="@+id/rvvii_image"
+        app:layout_constraintTop_toTopOf="@+id/rvvii_edit"
+        app:srcCompat="@drawable/baseline_delete_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

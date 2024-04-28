@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PAddProductActivity">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/as_bg_splash" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pap_activity_title"
+        app:layout_constraintStart_toEndOf="@+id/pap_activity_title"
+        app:layout_constraintTop_toTopOf="@+id/pap_activity_title"
+        app:srcCompat="@drawable/as_add_product" />
+
+    <TextView
+        android:id="@+id/pap_activity_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="70dp"
+        android:fontFamily="@font/inter_black"
+        android:text="Add Product"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back_ios_new_24" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="50dp">
+
+            <ImageView
+                android:id="@+id/pap_product_image"
+                android:layout_width="0dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/w_edittext_bgwhite_rounded"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/as_logo" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Product Name"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/pap_product_name"
+                app:layout_constraintStart_toStartOf="@+id/pap_product_name" />
+
+            <EditText
+                android:id="@+id/pap_product_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/w_edittext_bgwhite_rounded"
+                android:ems="10"
+                android:fontFamily="@font/inter"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pap_product_image"
+                tools:text="Test" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Product Image"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/pap_product_image"
+                app:layout_constraintStart_toStartOf="@+id/pap_product_image" />
+
+            <Spinner
+                android:id="@+id/pap_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/w_edittext_bgwhite_rounded"
+                android:fontFamily="@font/inter_semibold"
+                android:foreground="@drawable/baseline_arrow_drop_down_24"
+                android:foregroundGravity="center_vertical|right"
+                android:spinnerMode="dialog"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pap_product_name" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Category"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/pap_category"
+                app:layout_constraintStart_toStartOf="@+id/pap_category" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Price"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/pap_price"
+                app:layout_constraintStart_toStartOf="@+id/pap_price" />
+
+            <EditText
+                android:id="@+id/pap_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/w_edittext_bgwhite_rounded"
+                android:ems="10"
+                android:fontFamily="@font/inter"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pap_category"
+                tools:text="Test" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Quantity"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/pap_quantity"
+                app:layout_constraintStart_toStartOf="@+id/pap_quantity" />
+
+            <EditText
+                android:id="@+id/pap_quantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/w_edittext_bgwhite_rounded"
+                android:ems="10"
+                android:fontFamily="@font/inter"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pap_price"
+                tools:text="Test" />
+
+            <EditText
+                android:id="@+id/pap_barcode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/w_edittext_bgwhite_rounded"
+                android:ems="10"
+                android:fontFamily="@font/inter"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pap_quantity"
+                tools:text="Test" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Barcode"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/pap_barcode"
+                app:layout_constraintStart_toStartOf="@+id/pap_barcode" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Capital"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/pap_capital"
+                app:layout_constraintStart_toStartOf="@+id/pap_capital" />
+
+            <EditText
+                android:id="@+id/pap_capital"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/w_edittext_bgwhite_rounded"
+                android:ems="10"
+                android:fontFamily="@font/inter"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pap_barcode"
+                tools:text="Test" />
+
+            <Button
+                android:id="@+id/pap_add_product"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Add Product"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pap_capital" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
