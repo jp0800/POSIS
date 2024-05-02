@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".PViewInventoryActivity">
 
     <ImageView
@@ -54,10 +55,14 @@
         android:layout_marginEnd="64dp"
         android:background="@drawable/w_edittext_bgwhite_rounded"
         android:drawableStart="@drawable/baseline_search_24"
+        android:drawableEnd="@drawable/baseline_cancel_24"
+        android:drawablePadding="5dp"
         android:ems="10"
         android:fontFamily="@font/inter_medium"
         android:hint="Search"
         android:inputType="text"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
         android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -80,6 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:background="?attr/selectableItemBackground"
+        android:clickable="true"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/pvi_search_edittext"
         app:layout_constraintStart_toEndOf="@+id/pvi_search_edittext"
@@ -90,13 +98,12 @@
         android:id="@+id/pvi_number_of_items_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:fontFamily="@font/inter_semibold"
         android:text="Total no. of Items: 1"
         android:textColor="#000000"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/pvi_search_edittext"
-        app:layout_constraintTop_toBottomOf="@+id/pvi_search_edittext" />
+        app:layout_constraintTop_toBottomOf="@+id/pvi_filter_container" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pvi_recycler_view"
@@ -109,5 +116,123 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pvi_number_of_items_textview" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pvi_filter_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/w_button_bgwhite_rounded"
+        android:padding="10dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/pvi_search_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/pvi_search_edittext">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:checked="true"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Ascending"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Descending"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_black"
+            android:text="Sort by:"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/inter_black"
+            android:text="Sort In:"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/checkBox"
+            app:layout_constraintStart_toStartOf="@+id/checkBox" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Name"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Price"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/checkBox"
+            app:layout_constraintStart_toStartOf="@+id/checkBox"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Purchase"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/checkBox2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/checkBox2"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+
+        <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Low on Stock only"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/checkBox3"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/checkBox3"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

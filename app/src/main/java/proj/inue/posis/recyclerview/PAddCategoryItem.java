@@ -2,13 +2,14 @@ package proj.inue.posis.recyclerview;
 
 public class PAddCategoryItem {
     String categoryName;
-    int edit, delete;
+    long id;
 
-    public PAddCategoryItem(String categoryName, int edit, int delete) {
+
+    public PAddCategoryItem(String categoryName, long id) {
         this.categoryName = categoryName;
-        this.edit = edit;
-        this.delete = delete;
+        this.id = id;
     }
+
 
     public String getCategoryName() {
         return categoryName;
@@ -18,19 +19,7 @@ public class PAddCategoryItem {
         this.categoryName = categoryName;
     }
 
-    public int getEdit() {
-        return edit;
-    }
-
-    public void setEdit(int edit) {
-        this.edit = edit;
-    }
-
-    public int getDelete() {
-        return delete;
-    }
-
-    public void setDelete(int delete) {
-        this.delete = delete;
+    public long getId() {
+        return id;
     }
 }

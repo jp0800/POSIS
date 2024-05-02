@@ -2,36 +2,33 @@ package proj.inue.posis.recyclerview;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import proj.inue.posis.Home;
 import proj.inue.posis.PAddProductActivity;
 import proj.inue.posis.R;
-import proj.inue.posis.utils.MockDatabase;
+import proj.inue.posis.utils.Helper;
+import proj.inue.posis.utils.SQLiteDatabase;
 
 public class PViewInventoryItemViewAdapter extends RecyclerView.Adapter<PViewInventoryItemViewAdapter.ItemViewHolder> {
 
     Context context;
     ArrayList<PViewInventoryItem> PViewInventoryItems;
+    SQLiteDatabase db;
 
-    public PViewInventoryItemViewAdapter(Context context, ArrayList<PViewInventoryItem> PViewInventoryItems) {
+    public PViewInventoryItemViewAdapter(Context context, ArrayList<PViewInventoryItem> PViewInventoryItems, SQLiteDatabase db) {
         this.context = context;
         this.PViewInventoryItems = PViewInventoryItems;
+        this.db = db;
     }
 
     @NonNull
@@ -47,25 +44,37 @@ public class PViewInventoryItemViewAdapter extends RecyclerView.Adapter<PViewInv
         holder.textViews.get(2).setText(PViewInventoryItems.get(position).getLabelString());
         holder.textViews.get(3).setText(PViewInventoryItems.get(position).getContentString());
 
-        holder.imageViews.get(0).setImageResource(PViewInventoryItems.get(position).getImage());
-        holder.imageViews.get(1).setImageResource(PViewInventoryItems.get(position).getEdit());
-        holder.imageViews.get(2).setImageResource(PViewInventoryItems.get(position).getDelete());
+        holder.imageViews.get(0).setImageBitmap(Helper.loadImageFromFileSystem(PViewInventoryItems.get(position).getImage()));
+        holder.imageViews.get(1).setImageResource(R.drawable.baseline_edit_square_24);
+        holder.imageViews.get(2).setImageResource(R.drawable.baseline_delete_24);
 
-        holder.imageViews.get(1).setOnClickListener(e->{
+        holder.imageViews.get(1).setOnClickListener(e -> {
             Intent intent = new Intent(context, PAddProductActivity.class);
             intent.putExtra("itemDataJson", PViewInventoryItems.get(position).toJson());
             intent.putExtra("activityTitle", "Edit Product");
+            intent.putExtra("adapterPosition", position);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             context.startActivity(intent);
         });
 
         holder.imageViews.get(2).setOnClickListener(e -> {
-            int adapterPosition = holder.getAdapterPosition();
-            PViewInventoryItems.remove(adapterPosition);
-            MockDatabase.inventoryList = PViewInventoryItems;
+            Helper.openAlertYesNo(
+                    context,
+                    "POSIS: Warning",
+                    String.format("Are you sure you want to remove %s?", PViewInventoryItems.get(position).getTitle()),
+                    (dialog, which) -> {
+                        int adapterPosition = holder.getAdapterPosition();
 
-            notifyItemRemoved(adapterPosition);
+                        Helper.deleteImageFromFileSystem(PViewInventoryItems.get(position).getImage());
+                        Helper.deleteSingleById(db, "ProductList", PViewInventoryItems.get(adapterPosition).getId());
+                        Toast.makeText(context, String.format("Successfully Deleted: %s", PViewInventoryItems.get(position).getTitle()), Toast.LENGTH_SHORT).show();
+
+                        PViewInventoryItems.remove(adapterPosition);
+                        notifyItemRemoved(adapterPosition);
+                    },
+                    null);
+
         });
     }
 

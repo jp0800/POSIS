@@ -15,35 +15,43 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/white"
-        android:editable="false"
+        android:enabled="false"
         android:fontFamily="@font/inter_black"
-        android:text="Utensils"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rvaci_edit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Utensils" />
 
     <ImageView
         android:id="@+id/rvaci_edit"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="8dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
         android:padding="5dp"
+        android:tag="edit"
         app:layout_constraintBottom_toBottomOf="@+id/rvaci_delete"
         app:layout_constraintEnd_toStartOf="@+id/rvaci_delete"
         app:layout_constraintTop_toTopOf="@+id/rvaci_delete"
-        app:srcCompat="@drawable/baseline_edit_square_24" />
+        app:srcCompat="@drawable/baseline_edit_square_24"
+        android:focusable="true" />
 
     <ImageView
         android:id="@+id/rvaci_delete"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
         android:padding="5dp"
+        android:tag="delete"
         app:layout_constraintBottom_toBottomOf="@+id/rvaci_category_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rvaci_category_name"
-        app:srcCompat="@drawable/baseline_delete_24" />
+        app:srcCompat="@drawable/baseline_delete_24"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
