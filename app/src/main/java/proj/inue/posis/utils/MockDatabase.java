@@ -1,6 +1,6 @@
 package proj.inue.posis.utils;
 
-import com.google.gson.Gson;
+import android.database.Cursor;
 
 import java.util.ArrayList;
 
@@ -8,47 +8,66 @@ import proj.inue.posis.R;
 import proj.inue.posis.recyclerview.PAddCategoryItem;
 import proj.inue.posis.recyclerview.PViewInventoryItem;
 
+/**
+ * This will be renamed to CacheDatabase
+ */
 public class MockDatabase {
     public static ArrayList<PViewInventoryItem> inventoryList = new ArrayList<>();
     public static ArrayList<PAddCategoryItem> categoryList = new ArrayList<>();
 
-    public static void initInventoryItems(){
-        /* Setup Mock Variables */
-        String jsonMock = Helper.stringsToJson(
-                new String[]{
-                        "title", "category", "label", "content", "image", "edit", "delete"
-                }, new String[]{
-                        "Something",
-                        "lol",
-                        "['PriceQuantity','Capital','Total Price','Barcode','Item Left','Item','Purchased']",
-                        "['P 235.00','5000 pcs','P 1,175.00 ','P 2,350.00', '0 705632 441947', '2500', '2500']",
-                        String.valueOf(R.drawable.as_logo),
-                        String.valueOf(R.drawable.baseline_edit_square_24),
-                        String.valueOf(R.drawable.baseline_delete_24)
-                }
-        );
+    public static void initInventoryItems(SQLiteDatabase db) {
 
-        inventoryList.add(new Gson().fromJson(jsonMock, PViewInventoryItem.class));
-        inventoryList.add(new Gson().fromJson(jsonMock, PViewInventoryItem.class));
-        inventoryList.add(new Gson().fromJson(jsonMock, PViewInventoryItem.class));
-        inventoryList.add(new Gson().fromJson(jsonMock, PViewInventoryItem.class));
+        try (Cursor cursor = db.getReadableDatabase().query("ProductList", null, null, null, null, null, null)) {
+            while (cursor.moveToNext()) {
+
+                String[] contents = new String[]{
+                        String.valueOf(cursor.getFloat(cursor.getColumnIndexOrThrow("price"))),
+                        String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow("quantity"))),
+                        String.valueOf(cursor.getFloat(cursor.getColumnIndexOrThrow("capital"))),
+                        "0",
+                        String.valueOf(cursor.getLong(cursor.getColumnIndexOrThrow("barcode"))),
+                        "500",
+                        "0"
+                };
+
+                PViewInventoryItem item = new PViewInventoryItem(
+                        cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("name")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("category")),
+                        Helper.INVENTORY_LABELS,
+                        contents,
+                        cursor.getString(cursor.getColumnIndexOrThrow("image"))
+                );
+
+                MockDatabase.inventoryList.add(item);
+            }
+        }
     }
 
-    public static void initAddCategoryItems(){
-        /* Setup Mock Variables */
-        String jsonMock = Helper.stringsToJson(
-                new String[]{
-                        "categoryName", "edit", "delete"
-                }, new String[]{
-                        "Something",
-                        String.valueOf(R.drawable.baseline_edit_square_24),
-                        String.valueOf(R.drawable.baseline_delete_24)
-                }
-        );
-
-        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
-        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
-        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
-        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
+    public static void initAddCategoryItems(SQLiteDatabase db) {
+        try (Cursor cursor = db.getReadableDatabase().query("CategoryList", null, null, null, null, null, null)) {
+            while (cursor.moveToNext()) {
+                PAddCategoryItem item = new PAddCategoryItem(
+                        cursor.getString(cursor.getColumnIndexOrThrow("name")),
+                        cursor.getInt(cursor.getColumnIndexOrThrow("id")
+                        ));
+                MockDatabase.categoryList.add(item);
+            }
+        }
+//
+//        /* Setup Mock Variables */
+//        String jsonMock = Helper.stringsToJson(
+//                new String[]{
+//                        "id","categoryName"
+//                }, new String[]{
+//                        String.valueOf(0),
+//                        "Something",
+//                }
+//        );
+//
+//        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
+//        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
+//        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
+//        categoryList.add(new Gson().fromJson(jsonMock, PAddCategoryItem.class));
     }
 }

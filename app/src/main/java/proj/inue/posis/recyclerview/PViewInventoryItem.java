@@ -5,18 +5,21 @@ import com.google.gson.Gson;
 import proj.inue.posis.utils.Helper;
 
 public class PViewInventoryItem {
-    String title, category;
+    String title, category, image;
     String[] label, content;
-    int image, edit, delete;
+    int id;
 
-    public PViewInventoryItem(String title, String category, String[] label, String[] content, int image, int edit, int delete) {
+    public PViewInventoryItem(int id, String title, String category, String[] label, String[] content, String image) {
+        this.id = id;
         this.title = title;
         this.category = category;
         this.label = label;
         this.content = content;
         this.image = image;
-        this.edit = edit;
-        this.delete = delete;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -51,28 +54,12 @@ public class PViewInventoryItem {
         this.content = content;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
-    }
-
-    public int getEdit() {
-        return edit;
-    }
-
-    public void setEdit(int edit) {
-        this.edit = edit;
-    }
-
-    public int getDelete() {
-        return delete;
-    }
-
-    public void setDelete(int delete) {
-        this.delete = delete;
     }
 
     public String getLabelString() {
