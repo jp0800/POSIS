@@ -52,19 +52,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/w_edittext_bgwhite_rounded"
-        android:drawableStart="@drawable/baseline_search_24"
-        android:drawableEnd="@drawable/baseline_cancel_24"
-        android:drawablePadding="5dp"
         android:ems="10"
         android:fontFamily="@font/inter_medium"
         android:hint="Search"
+        android:imeOptions="actionSearch"
         android:inputType="text"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pvi_search_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -85,12 +83,11 @@
         android:id="@+id/pvi_filter_imageview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/pvi_search_edittext"
-        app:layout_constraintStart_toEndOf="@+id/pvi_search_edittext"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/pvi_search_edittext"
         app:srcCompat="@drawable/baseline_filter_list_24" />
 
@@ -135,13 +132,14 @@
             android:id="@+id/radioGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <RadioButton
-                android:id="@+id/radioButton"
+                android:id="@+id/pvi_order_asc"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:checked="true"
@@ -151,7 +149,7 @@
                 android:textSize="12sp" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
+                android:id="@+id/pvi_order_desc"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:fontFamily="@font/inter_semibold"
@@ -175,64 +173,75 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:fontFamily="@font/inter_black"
             android:text="Sort In:"
             android:textColor="#000000"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/checkBox"
-            app:layout_constraintStart_toStartOf="@+id/checkBox" />
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup2" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
+        <RadioGroup
+            android:id="@+id/radioGroup2"
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="48dp"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Name"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Price"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/checkBox"
-            app:layout_constraintStart_toStartOf="@+id/checkBox"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+            <RadioButton
+                android:id="@+id/pvi_filter_by_name"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:checked="true"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Name"
+                android:textColor="#000000"
+                android:textSize="12sp" />
 
-        <CheckBox
-            android:id="@+id/checkBox3"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Purchase"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/checkBox2"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/checkBox2"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+            <RadioButton
+                android:id="@+id/pvi_filter_by_price"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Price"
+                android:textColor="#000000"
+                android:textSize="12sp" />
 
-        <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:fontFamily="@font/inter_semibold"
-            android:text="Low on Stock only"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/checkBox3"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/checkBox3"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+            <RadioButton
+                android:id="@+id/pvi_filter_by_purchased"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:enabled="false"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Purchase"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/pvi_filter_by_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Low on Stock only"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </RadioGroup>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/pvi_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/w_button_bgwhite_rounded"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pvi_search_edittext"
+        app:layout_constraintEnd_toStartOf="@+id/pvi_filter_imageview"
+        app:layout_constraintTop_toTopOf="@+id/pvi_search_edittext"
+        app:srcCompat="@drawable/baseline_search_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

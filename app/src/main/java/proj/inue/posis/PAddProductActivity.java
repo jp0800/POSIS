@@ -224,7 +224,11 @@ public class PAddProductActivity extends AppCompatActivity {
         /* This is received data from the View Inventory */
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            activityTitle.setText(bundle.getString("activityTitle", "Add Product"));
+            String title = bundle.getString("activityTitle", "Add Product");
+
+            activityTitle.setText(title);
+            add.setText("Save Changes");
+
             item = new Gson().fromJson(bundle.getString("itemDataJson"), PViewInventoryItem.class);
             adapterPosition = bundle.getInt("adapterPosition");
             boolean found = Arrays.asList(courses).contains(item.getCategory());
@@ -253,8 +257,6 @@ public class PAddProductActivity extends AppCompatActivity {
             editTexts[2].setText(item.getContent()[1]);
             editTexts[3].setText(item.getContent()[4]);
             editTexts[4].setText(item.getContent()[2]);
-
-
         }
     }
 }
