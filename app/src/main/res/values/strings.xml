@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">POSIS</string>
+    <string name="pvi_number_of_items_textview">Total no. of Items:</string>
+</resources>
