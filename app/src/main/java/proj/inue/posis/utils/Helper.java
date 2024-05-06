@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -64,27 +65,27 @@ public class Helper {
         return view.getEditableText().toString().trim();
     }
 
-//    public static Bitmap loadImageFromFileSystem(String imagePath) {
-//        return BitmapFactory.decodeFile(imagePath);
-//    }
-
     public static Bitmap loadImageFromFileSystem(String imagePath) {
-        // Create a mock Bitmap
-        int width = 100; // Width of the mock Bitmap
-        int height = 100; // Height of the mock Bitmap
-        Bitmap.Config config = Bitmap.Config.ARGB_8888; // Bitmap configuration
-        Bitmap mockBitmap = Bitmap.createBitmap(width, height, config);
-
-        // You can optionally draw something on the mock Bitmap if neede
-        // d
-        // For example:
-        Canvas canvas = new Canvas(mockBitmap);
-        Paint paint = new Paint();
-        paint.setColor(Color.RED);
-        canvas.drawRect(0, 0, width, height, paint);
-
-        return mockBitmap;
+        return BitmapFactory.decodeFile(imagePath);
     }
+
+//    public static Bitmap loadImageFromFileSystem(String imagePath) {
+//        // Create a mock Bitmap
+//        int width = 100; // Width of the mock Bitmap
+//        int height = 100; // Height of the mock Bitmap
+//        Bitmap.Config config = Bitmap.Config.ARGB_8888; // Bitmap configuration
+//        Bitmap mockBitmap = Bitmap.createBitmap(width, height, config);
+//
+//        // You can optionally draw something on the mock Bitmap if neede
+//        // d
+//        // For example:
+//        Canvas canvas = new Canvas(mockBitmap);
+//        Paint paint = new Paint();
+//        paint.setColor(Color.RED);
+//        canvas.drawRect(0, 0, width, height, paint);
+//
+//        return mockBitmap;
+//    }
 
     public static String saveImage(Context context, Bitmap bitmap) {
         File directory = context.getFilesDir();

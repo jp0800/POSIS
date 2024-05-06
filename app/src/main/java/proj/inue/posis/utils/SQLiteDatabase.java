@@ -37,7 +37,7 @@ public class SQLiteDatabase extends SQLiteOpenHelper {
             db.execSQL(queryCreateProductList);
             db.execSQL(queryCreateCategoryList);
 
-            createMockItems(db);
+//            createMockItems(db);
             db.setTransactionSuccessful();
             Log.d("Database", "Tables created successfully.");
 

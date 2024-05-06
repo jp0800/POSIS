@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             sqLiteDatabase = new SQLiteDatabase(this);
-            sqLiteDatabase.onUpgrade(sqLiteDatabase.getWritableDatabase(), 1, 2);
+//            sqLiteDatabase.onUpgrade(sqLiteDatabase.getWritableDatabase(), 1, 2);
             
             Toast.makeText(this, "Setup Complete", Toast.LENGTH_SHORT).show();
         }catch (Exception ex){
