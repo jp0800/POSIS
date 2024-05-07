@@ -20,12 +20,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import proj.inue.posis.PViewInventoryActivity;
+import proj.inue.posis.recyclerview.PPointOfSaleItem;
 import proj.inue.posis.recyclerview.PViewInventoryItem;
 
 public class Helper {
 
     public static final String[] INVENTORY_LABELS = new String[]{
             "Price", "Quantity", "Capital", "Total Price", "Barcode", "Item Left", "Item Purchased"
+    };
+    public static final String[] POS_LABELS = new String[]{
+            "Item Left", "Price"
     };
 
     public static String stringsToJson(String[] keys, String[] values) {
@@ -189,5 +193,23 @@ public class Helper {
             productList.add(item);
         }
         return productList;
+    }
+
+    public static float computeTotalItems(ArrayList<PPointOfSaleItem> items){
+        float sum = 0;
+
+        if(items.size() == 1){
+            PPointOfSaleItem item = items.get(0);
+            return item.getMultiplier() * Float.parseFloat(item.getContent()[1]);
+        }
+        for (PPointOfSaleItem item : items) {
+            String[] content = item.getContent();
+            float multiplier = item.getMultiplier();
+            float price = Float.parseFloat(content[1]);
+
+            sum += (multiplier * price);
+        }
+
+        return sum;
     }
 }

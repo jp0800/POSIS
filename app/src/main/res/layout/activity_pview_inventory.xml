@@ -55,7 +55,7 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/w_edittext_bgwhite_rounded"
         android:ems="10"
-        android:fontFamily="@font/inter_medium"
+        android:fontFamily="@font/inter_semibold"
         android:hint="Search"
         android:imeOptions="actionSearch"
         android:inputType="text"

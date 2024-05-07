@@ -25,6 +25,16 @@ public class PViewInventoryItemViewAdapter extends RecyclerView.Adapter<PViewInv
     ArrayList<PViewInventoryItem> PViewInventoryItems;
     SQLiteDatabase db;
 
+    public interface OnItemClickListener {
+        void onItemChanged(int position, PViewInventoryItem newValue);
+    }
+
+    private OnItemClickListener mListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
     public PViewInventoryItemViewAdapter(Context context, ArrayList<PViewInventoryItem> PViewInventoryItems, SQLiteDatabase db) {
         this.context = context;
         this.PViewInventoryItems = PViewInventoryItems;
@@ -39,18 +49,25 @@ public class PViewInventoryItemViewAdapter extends RecyclerView.Adapter<PViewInv
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        holder.textViews.get(0).setText(PViewInventoryItems.get(position).getTitle());
-        holder.textViews.get(1).setText(PViewInventoryItems.get(position).getCategory());
-        holder.textViews.get(2).setText(PViewInventoryItems.get(position).getLabelString());
-        holder.textViews.get(3).setText(PViewInventoryItems.get(position).getContentString());
+        ArrayList<TextView> textViews = holder.textViews;
+        ArrayList<ImageView> imageViews = holder.imageViews;
 
-        holder.imageViews.get(0).setImageBitmap(Helper.loadImageFromFileSystem(PViewInventoryItems.get(position).getImage()));
-        holder.imageViews.get(1).setImageResource(R.drawable.baseline_edit_square_24);
-        holder.imageViews.get(2).setImageResource(R.drawable.baseline_delete_24);
+        PViewInventoryItem item = PViewInventoryItems.get(position);
 
-        holder.imageViews.get(1).setOnClickListener(e -> {
+        /* Data Binding */
+        textViews.get(0).setText(item.getTitle());
+        textViews.get(1).setText(item.getCategory());
+        textViews.get(2).setText(item.getLabelString());
+        textViews.get(3).setText(item.getContentString());
+
+        imageViews.get(0).setImageBitmap(Helper.loadImageFromFileSystem(item.getImage()));
+        imageViews.get(1).setImageResource(R.drawable.baseline_edit_square_24);
+        imageViews.get(2).setImageResource(R.drawable.baseline_delete_24);
+
+        /* Listeners */
+        imageViews.get(1).setOnClickListener(e -> {
             Intent intent = new Intent(context, PAddProductActivity.class);
-            intent.putExtra("itemDataJson", PViewInventoryItems.get(position).toJson());
+            intent.putExtra("itemDataJson", item.toJson());
             intent.putExtra("activityTitle", "Edit Product");
             intent.putExtra("adapterPosition", position);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -58,20 +75,21 @@ public class PViewInventoryItemViewAdapter extends RecyclerView.Adapter<PViewInv
             context.startActivity(intent);
         });
 
-        holder.imageViews.get(2).setOnClickListener(e -> {
+        imageViews.get(2).setOnClickListener(e -> {
             Helper.openAlertYesNo(
                     context,
                     "POSIS: Warning",
-                    String.format("Are you sure you want to remove %s?", PViewInventoryItems.get(position).getTitle()),
+                    String.format("Are you sure you want to remove %s?", item.getTitle()),
                     (dialog, which) -> {
                         int adapterPosition = holder.getAdapterPosition();
 
-                        Helper.deleteImageFromFileSystem(PViewInventoryItems.get(position).getImage());
-                        Helper.deleteSingleById(db, "ProductList", PViewInventoryItems.get(adapterPosition).getId());
-                        Toast.makeText(context, String.format("Successfully Deleted: %s", PViewInventoryItems.get(position).getTitle()), Toast.LENGTH_SHORT).show();
+                        Helper.deleteImageFromFileSystem(item.getImage());
+                        Helper.deleteSingleById(db, "ProductList", item.getId());
+                        Toast.makeText(context, String.format("Successfully Deleted: %s", item.getTitle()), Toast.LENGTH_SHORT).show();
 
-                        PViewInventoryItems.remove(adapterPosition);
-                        notifyItemRemoved(adapterPosition);
+                        mListener.onItemChanged(position, item);
+                        PViewInventoryItems.remove(position);
+                        notifyItemRemoved(position);
                     },
                     null);
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import proj.inue.posis.R;
 import proj.inue.posis.recyclerview.PAddCategoryItem;
+import proj.inue.posis.recyclerview.PPointOfSaleItem;
 import proj.inue.posis.recyclerview.PViewInventoryItem;
 
 /**
@@ -14,6 +15,7 @@ import proj.inue.posis.recyclerview.PViewInventoryItem;
 public class MockDatabase {
     public static ArrayList<PViewInventoryItem> inventoryList = new ArrayList<>();
     public static ArrayList<PAddCategoryItem> categoryList = new ArrayList<>();
+    public static ArrayList<PPointOfSaleItem> pointOfSaleList = new ArrayList<>();
 
     public static void initInventoryItems(SQLiteDatabase db) {
 
@@ -39,7 +41,19 @@ public class MockDatabase {
                         cursor.getString(cursor.getColumnIndexOrThrow("image"))
                 );
 
+                PPointOfSaleItem posItem = new PPointOfSaleItem(
+                        cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("name")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("category")),
+                        Helper.POS_LABELS,
+                        new String[]{
+                                String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow("quantity"))),
+                                String.valueOf(cursor.getFloat(cursor.getColumnIndexOrThrow("price")))
+                        },
+                        cursor.getString(cursor.getColumnIndexOrThrow("image"))
+                );
                 MockDatabase.inventoryList.add(item);
+                MockDatabase.pointOfSaleList.add(posItem);
             }
         }
     }

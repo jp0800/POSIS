@@ -1,12 +1,13 @@
 package proj.inue.posis;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.CheckBox;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -44,11 +45,11 @@ public class PViewInventoryActivity extends AppCompatActivity {
             return insets;
         });
 
-        /* Temporary Database */
+        /* Initialize Database */
         db = MainActivity.sqLiteDatabase;
         if (MockDatabase.inventoryList.isEmpty()) MockDatabase.initInventoryItems(db);
 
-        /* Initialization */
+        /* Initialize Components */
         RadioButton[] filterOptions = {
                 findViewById(R.id.pvi_filter_by_name),
                 findViewById(R.id.pvi_filter_by_price),
@@ -72,10 +73,16 @@ public class PViewInventoryActivity extends AppCompatActivity {
         totalItems.setText(String.format("%s %s", getResources().getString(R.string.pvi_number_of_items_textview), MockDatabase.inventoryList.size()));
 
         rv.setLayoutManager(new LinearLayoutManager((this)));
-        rv.setAdapter(new PViewInventoryItemViewAdapter(this, MockDatabase.inventoryList, db)); // Add the database object
+        PViewInventoryItemViewAdapter adapter = new PViewInventoryItemViewAdapter(this, MockDatabase.inventoryList, db);
+        rv.setAdapter(adapter); // Add the database object
 
         /* Listeners */
         back.setOnClickListener(e -> finish());
+
+        adapter.setOnItemClickListener((position, newValue) -> {
+            totalItems.setText(String.format("%s %s", getResources().getString(R.string.pvi_number_of_items_textview), MockDatabase.inventoryList.size()));
+        });
+
         filter.setOnClickListener(e -> {
             showHideFilterOptions(filterContainer, false);
         });
@@ -112,7 +119,7 @@ public class PViewInventoryActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (s.toString().trim().isEmpty()) {
                     rv.setAdapter(new PViewInventoryItemViewAdapter(PViewInventoryActivity.this, MockDatabase.inventoryList, db)); // Add the database object
-                    totalItems.setText(String.format("%s %s", getResources().getString(R.string.pvi_number_of_items_textview),  MockDatabase.inventoryList.size()));
+                    totalItems.setText(String.format("%s %s", getResources().getString(R.string.pvi_number_of_items_textview), MockDatabase.inventoryList.size()));
                     showHideFilterOptions(filterContainer, true);
                 }
             }
@@ -135,13 +142,17 @@ public class PViewInventoryActivity extends AppCompatActivity {
             searchBar.setError("Field must not be empty.");
             return;
         }
+
         ArrayList<PViewInventoryItem> result = Helper.filterProducts(db, searchValue, filterOptions[0].isChecked(), filterOptions[1].isChecked(), filterOptions[3].isChecked(), filterOptions[4].isChecked());
         rv.setAdapter(new PViewInventoryItemViewAdapter(this, result, db));
         totalItems.setText(String.format("%s %s", getResources().getString(R.string.pvi_number_of_items_textview), result.size()));
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
 
-    private void showHideFilterOptions(ConstraintLayout filterContainer, boolean forceHide){
-        if(forceHide){
+    private void showHideFilterOptions(ConstraintLayout filterContainer, boolean forceHide) {
+        if (forceHide) {
             filterContainer.setVisibility(View.GONE);
             return;
         }
